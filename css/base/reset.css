@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scrolling — one line */
+  -webkit-text-size-adjust: 100%; /* Prevent iOS font inflation */
+}
+
+body {
+  background: var(--sand);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased; /* Sharper text on Mac */
+  -moz-osx-font-smoothing: grayscale;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+img,
+video {
+  max-width: 100%;
+  display: block; /* Removes the mysterious bottom gap on images */
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit; /* Inputs don't inherit fonts by default — fix that */
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word; /* No horizontal overflow from long words */
+}
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* centers the wrapper */
+  padding: 0 20px; /* space inside */
+}

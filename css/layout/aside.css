@@ -1,0 +1,132 @@
+.tip-section {
+  padding: 1rem;
+  border: 1.5px solid var(--green-300);
+  background-color: var(--green-100);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.tip-image {
+  font-size: 2rem;
+  margin-bottom: 4px;
+}
+.tip-title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.tip-desc {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  color: var(--green-700);
+}
+
+/*NEWS SECTION */
+.news-container {
+  padding: 1.5rem;
+  border: 1.5px solid var(--border);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.news-label {
+  color: var(--green-500);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+.news-title {
+  font-family: var(--font-serif);
+  color: var(--text-dark);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.news-desc {
+  color: var(--text-muted);
+  margin: 10px 0;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.email {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  border: 1px solid var(--green-300);
+  margin-bottom: 8px;
+}
+.email:focus {
+  outline: none;
+  border: 1.5px solid var(--green-500);
+}
+.news-btn {
+  width: 100%;
+  border-radius: var(--radius-sm);
+}
+
+/* POPULAR SECTION */
+.popular-section {
+  padding: 1.5rem;
+  border: 1.5px solid var(--border);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.popular-label {
+  color: var(--green-500);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+.popular-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  padding: 10px;
+  border-radius: var(--radius-md);
+}
+.popular-card:hover {
+  background-color: var(--green-50);
+}
+.pop-card-left h3 {
+  color: var(--green-100);
+  font-weight: 900;
+  font-family: var(--font-sans);
+}
+.pop-card-right {
+  width: 100%;
+}
+.pop-right-title {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+.read-time {
+  font-family: var(--font-sans);
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+/* BROWSE TAGS */
+.browse-container {
+  padding: 1.5rem;
+  border: 1.5px solid var(--border);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.browse-label {
+  color: var(--green-500);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+.browse-grid {
+  padding: 8px;
+}

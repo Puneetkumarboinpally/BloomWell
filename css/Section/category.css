@@ -1,0 +1,27 @@
+.category-section {
+  padding: 2rem 0;
+  background: white;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+}
+.category-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.cat-pill {
+  padding: 8px 20px;
+  background: var(--green-700);
+  color: white;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(0.6rem, 4vw, 0.9rem);
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-lg);
+  white-space: nowrap;
+  transition: translate var(--t-med);
+}
+.cat-pill:hover {
+  transform: translateY(-1px);
+}

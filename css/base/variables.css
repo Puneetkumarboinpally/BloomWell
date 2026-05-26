@@ -1,0 +1,54 @@
+:root {
+  /* Brand greens — darkest → lightest */
+  --green-900: #1b4332; /* footer bg, deep headings */
+  --green-700: #2d6a4f; /* primary buttons, nav logo */
+  --green-500: #52b788; /* accent borders, underlines */
+  --green-300: #95d5b2; /* avatar bg, light borders */
+  --green-200: #b7e4c7; /* hero border, card tints */
+  --green-100: #d8f3dc; /* hero bg, tip card bg */
+  --green-50: #f0fbf4; /* hover bg on white surfaces */
+
+  /* Neutrals */
+  --sand: #f8f4ef; /* site background */
+  --border: #e8e3dc; /* dividers and card borders */
+  --text-dark: #1b4332; /* headings */
+  --text-mid: #555; /* body / excerpt text */
+  --text-muted: #888; /* meta / byline info */
+  --text-faint: #999; /* timestamps */
+  --white: #fff;
+
+  /* Category tints */
+  --peach-bg: #ffe5d9;
+  --peach-bd: #ffb89a;
+  --peach-txt: #9d4a29;
+
+  --sun-bg: #fff3b0;
+  --sun-bd: #f9d800;
+  --sun-txt: #7d6200;
+
+  --sky-bg: #d6eaf8;
+  --sky-bd: #85c1e9;
+  --sky-txt: #1a5276;
+
+  --rose-bg: #fce4ec;
+  --rose-bd: #f48fb1;
+  --rose-txt: #880e3f;
+
+  --lilac-bg: #ede7f6;
+  --lilac-bd: #b39ddb;
+  --lilac-txt: #4a2480;
+
+  /* Typography */
+  --font-sans: "Nunito", sans-serif;
+  --font-serif: "Lora", serif;
+
+  /* Border radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Transitions */
+  --t-fast: 0.15s ease;
+  --t-med: 0.2s ease;
+}

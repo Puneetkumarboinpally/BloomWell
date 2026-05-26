@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary meta -->
+    <meta
+      name="description"
+      content="Get in touch with the BloomWell team. Send us a question, pitch an article, report a correction, or ask about partnerships."
+    />
+    <meta
+      name="keywords"
+      content="contact BloomWell, write for BloomWell, wellness article pitch, health journalism, report correction"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact — BloomWell" />
+    <meta
+      property="og:description"
+      content="We'd love to hear from you. Questions, pitches, corrections, or just a kind word — we read everything and reply to most of it."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bloomwell.com/contact" />
+
+    <!-- Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contact — BloomWell" />
+    <meta
+      name="twitter:description"
+      content="We'd love to hear from you. Questions, pitches, corrections, or just a kind word — we read everything and reply to most of it."
+    />
+
+    <title>Contact | BloomWell</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="nav-logo-container">
+          <a href="/" class="logo-title" aria-label="BloomWell Home">
+            BloomWell
+          </a>
+        </div>
+        <nav class="nav-menu-container" aria-label="Primary Navigation">
+          <ul class="nav-menu">
+            <li>
+              <a href="/" class="nav-link active-class">home</a>
+            </li>
+            <li><a href="./articles.html" class="nav-link">Articles</a></li>
+            <li>
+              <a href="./about.html" class="nav-link">Our Story</a>
+            </li>
+            <li>
+              <a href="./contact.html" class="nav-link" aria-current="page"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                href="/"
+                class="primary-btn mobile-cta"
+                aria-label="Subscribe Button"
+                >Subscribe Free</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="nav-action-container">
+          <button
+            class="toggle-btn"
+            aria-label="switch to dark mode"
+            aria-pressed="false"
+          ></button>
+          <a href="/" class="primary-btn cta-btn" aria-label="Subscribe Button"
+            >Subscribe Free</a
+          >
+        </div>
+        <div
+          class="hamburger-menu"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- HERO SECTION -->
+      <section class="contact-hero-section">
+        <div class="container">
+          <div class="contact-hero-container">
+            <span class="contact-eyebrow">✦ Get in Touch</span>
+            <h1 class="contact-hero-title">
+              We'd love to <br /><em>hear from you</em>
+            </h1>
+            <p class="contact-hero-desc">
+              Questions, pitches, corrections, or just a kind word — we read
+              everything and reply to most of it.
+            </p>
+            <div class="contact-badge">
+              <div class="dot"></div>
+              <div class="badge-desc">
+                Usually replies within 2 business days
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTS CARD -->
+      <section class="contact-card-section">
+        <div class="container">
+          <div class="contact-card-grid">
+            <div class="contact-card">
+              <span class="contact-card-icon">💬</span>
+              <h2 class="contact-card-title">General enquiry</h2>
+              <p class="contact-card-desc">
+                Questions, feedback, or anything else on your mind.
+              </p>
+            </div>
+            <div class="contact-card">
+              <span class="contact-card-icon">✍️</span>
+              <h2 class="contact-card-title">Write for us</h2>
+              <p class="contact-card-desc">
+                Pitch an article or propose a collaboration.
+              </p>
+            </div>
+            <div class="contact-card">
+              <span class="contact-card-icon">🔍</span>
+              <h2 class="contact-card-title">Report a correction</h2>
+              <p class="contact-card-desc">
+                Spotted something wrong? we want to know.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT FORM SECTION -->
+      <section class="form-section">
+        <div class="container">
+          <form action="/" method="post">
+            <span class="teams-label">✦ Send a message</span>
+            <h2 class="teams-title">What's on your mind?</h2>
+            <p class="teams-desc">
+              Fill in the form and we'll get back to you shortly. For urgent
+              medical questions, please consult your GP.
+            </p>
+
+            <div class="rows-container">
+              <div class="column-container">
+                <label for="firstname">FIRST NAME</label>
+                <input type="text" id="firstname" placeholder="Sophie" />
+              </div>
+              <div class="column-container">
+                <label for="lastname">LAST NAME</label>
+                <input type="text" id="lastname" placeholder="Lane" />
+              </div>
+            </div>
+            <div class="column-container">
+              <label for="email">Email address</label>
+              <input type="email" id="email" placeholder="your@email.com" />
+            </div>
+            <div class="column-container">
+              <label for="reason">Reason for contact</label>
+              <select name="reason" id="reason">
+                <option value="default">Select a topic...</option>
+                <option value="general-enquiry">general enquiry</option>
+                <option value="Article">Article correction or feedback</option>
+                <option value="collaboration">
+                  Writer pitch or collaboration
+                </option>
+                <option value="Advertising">Advertising & partnerships</option>
+                <option value="technical">Technical issue</option>
+                <option value="Newsletter">Newsletter help</option>
+                <option value="something">Something else</option>
+              </select>
+            </div>
+            <div class="column-container">
+              <label for="message">MESSAGE</label>
+              <textarea
+                name="message"
+                id="message"
+                placeholder="Tell us what's on your mind..."
+              ></textarea>
+              <p class="teams-desc">
+                The more detail you include, the faster we can help.
+              </p>
+            </div>
+            <button type="submit" class="submit-btn">Send message →</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- FAQ SECTION -->
+      <section class="faq-section">
+        <div class="container">
+          <div class="faq-container">
+            <span class="teams-label">✦ Before you write</span>
+            <h2 class="teams-title">Frequently asked <em>questions</em></h2>
+            <div class="question-container">
+              <div class="faq-toggle-container">
+                <h3 class="question">Can I submit an article or guest post?</h3>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="answer-container">
+                <p class="answer">
+                  Yes — we accept pitches from qualified writers, healthcare
+                  professionals, and researchers. We don't publish generic
+                  wellness content; we're looking for pieces grounded in
+                  evidence and written with genuine expertise. Read our
+                  contributor guidelines for more detail, then use the contact
+                  form above with "Writer pitch" selected.
+                </p>
+              </div>
+            </div>
+            <div class="question-container">
+              <div class="faq-toggle-container">
+                <h3 class="question">
+                  Do you accept sponsored content or paid placements?
+                </h3>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="answer-container">
+                <p class="answer">
+                  No. We do not publish sponsored articles, accept payment to
+                  recommend products, or allow brands to influence our editorial
+                  content. This is a firm policy. We do accept clearly-labelled
+                  sponsorships for the newsletter and occasional event
+                  partnerships — but these are always disclosed and never affect
+                  our editorial independence.
+                </p>
+              </div>
+            </div>
+            <div class="question-container">
+              <div class="faq-toggle-container">
+                <h3 class="question">
+                  I'm having trouble with my newsletter subscription.
+                </h3>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="answer-container">
+                <p class="answer">
+                  Check your spam or promotions folder first — our emails
+                  sometimes land there on the first send. If you need to change
+                  your email address or update your preferences, click "Manage
+                  preferences" at the bottom of any newsletter email. Still
+                  stuck? Use the form above and select "Newsletter help".
+                </p>
+              </div>
+            </div>
+            <div class="question-container">
+              <div class="faq-toggle-container">
+                <h3 class="question">
+                  Can I republish or quote your articles?
+                </h3>
+                <span class="faq-toggle">+ </span>
+              </div>
+              <div class="answer-container">
+                <p class="answer">
+                  Short quotes with attribution are generally fine for editorial
+                  and non-commercial purposes. For anything more substantial —
+                  reprinting full articles, commercial use, or translation —
+                  please get in touch via the contact form. We're usually happy
+                  to work something out.
+                </p>
+              </div>
+            </div>
+            <div class="question-container">
+              <div class="faq-toggle-container">
+                <h3 class="question">
+                  Do you offer personalised health advice?
+                </h3>
+                <span class="faq-toggle">+ </span>
+              </div>
+              <div class="answer-container">
+                <p class="answer">
+                  No. BloomWell publishes general health information and
+                  education — not personal medical advice. Nothing on our site
+                  should be taken as a substitute for advice from your own GP,
+                  dietitian, or other qualified healthcare professional. If you
+                  have a specific health concern, please speak with a qualified
+                  practitioner.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-header">
+            <div class="footer-grid">
+              <div class="grid-container1">
+                <h2>BloomWell</h2>
+                <p>Nourish your body,</p>
+                <p>nurture your mind.</p>
+              </div>
+              <div class="grid-container">
+                <h3>Topic</h3>
+                <p>Nutrition</p>
+                <p>Mindfulness</p>
+                <p>Movement</p>
+                <p>Sleep</p>
+                <p>Gut Health</p>
+              </div>
+              <div class="grid-container">
+                <h3>Company</h3>
+                <p>About Us</p>
+                <p>Our Writers</p>
+                <p>Editorial Policy</p>
+                <p>Advertise</p>
+              </div>
+              <div class="grid-container">
+                <h3>Connect</h3>
+                <p>Instagram</p>
+                <p>Pinterest</p>
+                <p>Newsletter</p>
+                <p>Contact</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2026 BloomWell. All rights reserved.</p>
+            <p>Privacy · Terms · Cookie Policy</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./script/faq.js"></script>
+    <script type="module" src="./script/header.js"></script>
+  </body>
+</html>

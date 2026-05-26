@@ -1,0 +1,20 @@
+@import "./base/reset.css";
+@import "./base/variables.css";
+
+@import "./layout/header.css";
+@import "./layout/footer.css";
+
+@import "./components/button.css";
+
+@import "./pages/home.css";
+
+@import "./Section/hero.css";
+@import "./Section/category.css";
+
+@import "./layout/aside.css";
+
+@import "./Section/feature.css";
+
+@import "./pages/about.css";
+
+@import "./pages/contact.css";

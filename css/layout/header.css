@@ -1,0 +1,133 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-height: 60px;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+}
+
+/* LOGO CONTAINER */
+.nav-logo-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+.logo-title {
+  font-family: var(--font-serif);
+  color: var(--green-700);
+  font-size: clamp(1rem, 6vw, 1.5rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* NAV MENU CONTAINER*/
+.nav-menu-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.nav-menu {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 4vw, 0.875rem);
+  text-transform: capitalize;
+  color: var(--text-mid);
+  font-weight: 600;
+  padding-bottom: 3px;
+  transition: all var(--t-med);
+}
+.nav-link:hover {
+  color: var(--green-700);
+  border-bottom: 2px solid var(--green-300);
+}
+.mobile-cta {
+  display: none;
+}
+
+/* NAV-MENU ACTIVE CLASS */
+.active-class {
+  color: var(--green-700);
+  border-bottom: 2px solid var(--green-300);
+}
+
+/* NAV ACTION  CONTAINER*/
+.nav-action-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+}
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--green-700);
+  transition: all 0.3s;
+}
+
+/* RESPONSIVE MEDIA */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+  }
+  .hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .nav-menu {
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    left: -100%;
+    top: 60px;
+    text-align: center;
+    background-color: var(--sand);
+    width: 100%;
+    z-index: 1000;
+    transition: 0.4s ease-in-out;
+  }
+  .nav-menu.active {
+    left: 0;
+  }
+  .nav-menu li {
+    padding: 3px;
+  }
+  .nav-menu li:hover {
+    background: var(--green-900);
+  }
+  .nav-link {
+    font-size: 1.2rem;
+  }
+  .nav-link:hover {
+    border: none;
+  }
+
+  .cta-btn {
+    display: none;
+  }
+  .mobile-cta {
+    display: block;
+  }
+}
