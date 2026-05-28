@@ -131,3 +131,62 @@
     padding: 14px 16px 14px 46px;
   }
 }
+
+/* FILTER BUTTONS */
+.articles-filter-section {
+  padding: 2rem;
+}
+.articles-fil-btn-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 5px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+.articles-fil-btn-container::-webkit-scrollbar {
+  display: none;
+}
+
+.fil-btn-card {
+  padding: 10px 20px;
+  width: 160px;
+  background-color: var(--green-50);
+  display: inline-block;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--green-500);
+  scroll-snap-align: start;
+  transition:
+    transform var(--t-med),
+    box-shadow var(--t-med);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.fil-btn-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+.fil-btn-card.active {
+  border: 2px solid var(--green-700);
+}
+.fil-btn-icon {
+  font-size: 2rem;
+  color: var(--text-dark);
+}
+.fil-btn-title {
+  font-size: 0.95rem;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-top: 6px;
+}
+.fil-btn-desc {
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
