@@ -127,7 +127,89 @@
           </div>
         </div>
       </section>
+
+      <!-- MAIN ARTICLE -->
+      <section class="main-article-section">
+        <div class="container">
+          <div class="main-article-container">
+            <div class="main-article-card">
+              <div class="feature-card">
+                <div
+                  class="feature-image-section"
+                  style="background-color:${card.imgBg};"
+                >
+                  <div class="feature-image-inner">${card.emoji}</div>
+                  <span class="feature-card-tag">${card.tag}</span>
+                </div>
+                <div class="feature-body-container">
+                  <h2 class="feature-header">${card.title}</h2>
+                  <p class="feature-desc">${card.excerpt}</p>
+                </div>
+                <div class="feature-meta-container">
+                  <div class="feat-author">
+                    <div class="meta-initials">${card.authorInitials}</div>
+                    <span class="meta-author-name">${card.authorName}</span>
+                  </div>
+                  <span class="meta-read-time">${card.readTime}</span>
+                  <span class="meta-date">${card.date}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!-- ARTICLE GRID SECTION -->
+    <section class="article-grid-section">
+      <div class="container">
+        <div class="article-grid-container">
+          <div class="showing-container">
+            <div class="showing-left">
+              <span class="showing">Showing 4 articles</span>
+            </div>
+            <div class="showing-right">
+              <select name="newest" id="newest">
+                <option value="newest-first">Newest First</option>
+                <option value="most-popular">Most Popular</option>
+                <option value="shortest-read">Shortest Read</option>
+              </select>
+            </div>
+          </div>
+          <div class="article-grid">
+            <div class="article-grid-card">
+              <div
+                class="article-grid-head"
+                style="background-color: var(--green-200)"
+              >
+                <span class="article-grid-icon">🌿</span>
+                <span class="article-grid-tag">Nutrition</span>
+              </div>
+              <div class="article-grid-body">
+                <h2 class="article-grid-title">
+                  The anti-inflammatory plate: how food quietly heals your body
+                  every single day
+                </h2>
+                <p class="article-grid-desc">
+                  Chronic inflammation is at the root of most modern ailments —
+                  but the good news? Your fork is one of your most powerful
+                  tools. Here's how to build a plate that works with your body,
+                  not against it.
+                </p>
+              </div>
+              <div class="article-grid-meta">
+                <div class="article-grid-author">
+                  <div class="meta-initials">SL</div>
+                  <span class="meta-author-name">Sophie Lane,RD</span>
+                </div>
+                <span class="meta-read-time">8 mins</span>
+                <span class="meta-date">May 21</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- FOOTER SECTION -->
     <footer>

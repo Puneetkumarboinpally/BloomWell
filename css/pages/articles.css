@@ -134,7 +134,9 @@
 
 /* FILTER BUTTONS */
 .articles-filter-section {
-  padding: 2rem;
+  padding: 1rem;
+  background: var(--white);
+  border-bottom: 1.5px solid var(--border);
 }
 .articles-fil-btn-container {
   display: flex;
@@ -189,4 +191,9 @@
   font-weight: 600;
   color: var(--text-muted);
   margin-top: 2px;
+}
+
+/* MAIN ARTICLE */
+.main-article-section {
+  padding: 2rem;
 }
