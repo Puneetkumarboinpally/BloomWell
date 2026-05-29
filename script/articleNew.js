@@ -1,3 +1,6 @@
+// ======================================================
+// DATA
+// ======================================================
 export const productCards = [
   // ── NUTRITION (9) ─────────────────────────────────────────
   {
@@ -875,65 +878,89 @@ export const productCards = [
   },
 ];
 
+// ======================================================
+// DOM ELEMENTS
+// ======================================================
+
 const filterButtons = document.querySelector(".articles-fil-btn-container");
 const mainArticleCard = document.querySelector(".main-article-container");
 const articleGrid = document.querySelector(".articles-grid");
+
+const searchInput = document.querySelector(".article-search-bar");
 const articleCount = document.querySelector(".show-count");
 
-//
-const unique = ["All Topics", ...new Set(productCards.map((p) => p.tag))];
+// ======================================================
+// STATE
+// ======================================================
 
-unique.forEach((topic) => {
-  const matchingTitle = productCards.find((t) => t.tag === topic);
+// Stores currently selected category
+let currentTopic = "All Topics";
+
+// ======================================================
+// CREATE FILTER BUTTONS
+// ======================================================
+
+const uniqueTopics = [
+  "All Topics",
+  ...new Set(productCards.map((card) => card.tag)),
+];
+
+// Build buttons only once
+let buttonsHTML = "";
+
+uniqueTopics.forEach((topic) => {
+  const matchingCard = productCards.find((card) => card.tag === topic);
+
   const count =
     topic === "All Topics"
       ? productCards.length
-      : productCards.filter((t) => t.tag === topic).length;
-  filterButtons.innerHTML += `
- <button 
+      : productCards.filter((card) => card.tag === topic).length;
+
+  buttonsHTML += `
+    <button
       class="fil-btn-card"
       data-topic="${topic}"
       style="
-        background-color:${matchingTitle?.imgBg || "#f0fbf4"};
-        border-color:${matchingTitle?.tagColors?.border || "#52b788"};
+        background-color:${matchingCard?.imgBg || "#f0fbf4"};
+        border-color:${matchingCard?.tagColors?.border || "#52b788"};
       "
     >
-      <span class="fil-btn-icon">${matchingTitle?.emoji || "✦"}</span>
-      <p class="fil-btn-title">${topic}</p>
-      <p class="fil-btn-desc">${count} articles</p>
+      <span class="fil-btn-icon">
+        ${matchingCard?.emoji || "✦"}
+      </span>
+
+      <p class="fil-btn-title">
+        ${topic}
+      </p>
+
+      <p class="fil-btn-desc">
+        ${count} articles
+      </p>
     </button>
   `;
-
-  filterButtons.addEventListener("click", (e) => {
-    const btn = e.target.closest(".fil-btn-card");
-
-    const topic = btn.dataset.topic;
-
-    const filteredCards =
-      topic === "All Topics"
-        ? productCards
-        : productCards.filter((card) => card.tag === topic);
-
-    articleCount.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    renderGrid(filteredCards);
-  });
 });
 
-// RENDER FUNCTION
+filterButtons.innerHTML = buttonsHTML;
+
+const firstButton = filterButtons.querySelector(".fil-btn-card");
+
+firstButton?.classList.add("active");
+
+// ======================================================
+// FEATURED ARTICLE
+// ======================================================
 
 function renderArticleCard(card) {
   mainArticleCard.innerHTML = `
     <div class="feature-card">
 
-      <div 
+      <div
         class="feature-image-section"
         style="background-color:${card.imgBg};"
       >
-        <div class="feature-image-inner">${card.emoji}</div>
+        <div class="feature-image-inner">
+          ${card.emoji}
+        </div>
 
         <span class="feature-card-tag">
           ${card.tag}
@@ -976,37 +1003,64 @@ function renderArticleCard(card) {
   `;
 }
 
+// Show first article on page load
 renderArticleCard(productCards[0]);
 
+// ======================================================
+// ARTICLE COUNT
+// ======================================================
+
 function updateArticleCount(cards) {
-  articleCount.textContent = cards.length;
+  articleCount.textContent = `${cards.length} article${cards.length !== 1 ? "s" : ""}`;
 }
 
-// ARTICLE GRID
-function renderGrid(cardsData = productCards) {
+// ======================================================
+// GRID RENDERING
+// ======================================================
+
+function renderGrid(cardsData) {
   articleGrid.innerHTML = "";
 
   updateArticleCount(cardsData);
 
   cardsData.forEach((card) => {
-    const cards = document.createElement("div");
-    cards.classList.add("article-grid-card");
+    const cardElement = document.createElement("div");
 
-    cards.innerHTML = `
-      <div class="article-grid-head" style="background-color:${card.tagColors.bg}">
-        <div class="article-grid-icon">${card.emoji}</div>
-        <span class="article-grid-tag">${card.tag}</span>
+    cardElement.classList.add("article-grid-card");
+
+    cardElement.innerHTML = `
+      <div
+        class="article-grid-head"
+        style="background-color:${card.tagColors.bg}"
+      >
+        <div class="article-grid-icon">
+          ${card.emoji}
+        </div>
+
+        <span class="article-grid-tag">
+          ${card.tag}
+        </span>
       </div>
 
       <div class="article-grid-body">
-        <h2 class="article-grid-title">${card.title}</h2>
-        <p class="article-grid-desc">${card.excerpt}</p>
+        <h2 class="article-grid-title">
+          ${card.title}
+        </h2>
+
+        <p class="article-grid-desc">
+          ${card.excerpt}
+        </p>
       </div>
 
       <div class="article-grid-meta">
         <div class="article-grid-author">
-          <div class="meta-initials">${card.authorInitials}</div>
-          <span class="meta-author-name">${card.authorName}</span>
+          <div class="meta-initials">
+            ${card.authorInitials}
+          </div>
+
+          <span class="meta-author-name">
+            ${card.authorName}
+          </span>
         </div>
 
         <span class="meta-read-time">
@@ -1015,7 +1069,9 @@ function renderGrid(cardsData = productCards) {
       </div>
     `;
 
-    cards.addEventListener("click", () => {
+    // When a card is clicked
+    // show it in the featured section
+    cardElement.addEventListener("click", () => {
       renderArticleCard(card);
 
       mainArticleCard.scrollIntoView({
@@ -1024,7 +1080,78 @@ function renderGrid(cardsData = productCards) {
       });
     });
 
-    articleGrid.appendChild(cards);
+    articleGrid.appendChild(cardElement);
   });
 }
-renderGrid();
+
+// ======================================================
+// SEARCH + FILTER LOGIC
+// ======================================================
+
+function filterArticles() {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+
+  // Step 1:
+  // Filter by selected category
+  let filteredCards =
+    currentTopic === "All Topics"
+      ? productCards
+      : productCards.filter((card) => card.tag === currentTopic);
+
+  // Step 2:
+  // Filter by search text
+  filteredCards = filteredCards.filter((card) => {
+    return (
+      card.title.toLowerCase().includes(searchTerm) ||
+      card.excerpt.toLowerCase().includes(searchTerm) ||
+      card.authorName.toLowerCase().includes(searchTerm) ||
+      card.tag.toLowerCase().includes(searchTerm)
+    );
+  });
+
+  // Step 3:
+  // Render matching results
+  renderGrid(filteredCards);
+}
+
+// ======================================================
+// CATEGORY BUTTON EVENTS
+// ======================================================
+filterButtons.addEventListener("click", (e) => {
+  const btn = e.target.closest(".fil-btn-card");
+
+  if (!btn) return;
+
+  // Remove active state from all buttons
+  document.querySelectorAll(".fil-btn-card").forEach((button) => {
+    button.classList.remove("active");
+  });
+
+  // Add active state to clicked button
+  btn.classList.add("active");
+
+  // Save selected category
+  currentTopic = btn.dataset.topic;
+
+  articleCount.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+
+  // Re-render results
+  filterArticles();
+});
+
+// ======================================================
+// SEARCH INPUT EVENT
+// ======================================================
+
+searchInput.addEventListener("input", () => {
+  filterArticles();
+});
+
+// ======================================================
+// INITIAL PAGE LOAD
+// ======================================================
+
+renderGrid(productCards);
