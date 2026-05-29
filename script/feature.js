@@ -5,7 +5,7 @@ const categoryContainer = document.querySelector(".category-container");
 const articleGrid = document.querySelector(".article-grid");
 
 // ── RENDER FEATURE CARD ────────────────────────────────────
-function renderFeatureCard(card) {
+export function renderFeatureCard(card) {
   featureCard.innerHTML = `
     <div class="feature-card">
       <div class="feature-image-section" style="background-color:${card.imgBg};">

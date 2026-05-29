@@ -874,27 +874,157 @@ export const productCards = [
     date: "February 28, 2026",
   },
 ];
-const filterButtonContainer = document.querySelector(
-  ".articles-fil-btn-container",
-);
 
-// create a unique +1111111111111+
+const filterButtons = document.querySelector(".articles-fil-btn-container");
+const mainArticleCard = document.querySelector(".main-article-container");
+const articleGrid = document.querySelector(".articles-grid");
+const articleCount = document.querySelector(".show-count");
+
+//
 const unique = ["All Topics", ...new Set(productCards.map((p) => p.tag))];
 
-unique.forEach((t) => {
-  const match = productCards.find((p) => p.tag === t);
-
+unique.forEach((topic) => {
+  const matchingTitle = productCards.find((t) => t.tag === topic);
   const count =
-    t === "All Topics"
+    topic === "All Topics"
       ? productCards.length
-      : productCards.filter((p) => p.tag === t).length;
+      : productCards.filter((t) => t.tag === topic).length;
+  filterButtons.innerHTML += `
+ <button 
+      class="fil-btn-card"
+      data-topic="${topic}"
+      style="
+        background-color:${matchingTitle?.imgBg || "#f0fbf4"};
+        border-color:${matchingTitle?.tagColors?.border || "#52b788"};
+      "
+    >
+      <span class="fil-btn-icon">${matchingTitle?.emoji || "✦"}</span>
+      <p class="fil-btn-title">${topic}</p>
+      <p class="fil-btn-desc">${count} articles</p>
+    </button>
+  `;
 
-  filterButtonContainer.innerHTML += ` 
-  <div class="fil-btn-card" 
-  style="background-color:${match?.imgBg || "#f0fbf4"}; 
-  border-color:${match?.tagColors.border || "#52b788"}">
-                <span class="fil-btn-icon">${match?.emoji || "✦"}</span>
-                <p class="fil-btn-title">${t}</p>
-                <p class="fil-btn-desc">${count} articles</p>
-              </div>`;
+  filterButtons.addEventListener("click", (e) => {
+    const btn = e.target.closest(".fil-btn-card");
+
+    const topic = btn.dataset.topic;
+
+    const filteredCards =
+      topic === "All Topics"
+        ? productCards
+        : productCards.filter((card) => card.tag === topic);
+
+    articleCount.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    renderGrid(filteredCards);
+  });
 });
+
+// RENDER FUNCTION
+
+function renderArticleCard(card) {
+  mainArticleCard.innerHTML = `
+    <div class="feature-card">
+
+      <div 
+        class="feature-image-section"
+        style="background-color:${card.imgBg};"
+      >
+        <div class="feature-image-inner">${card.emoji}</div>
+
+        <span class="feature-card-tag">
+          ${card.tag}
+        </span>
+      </div>
+
+      <div class="feature-body-container">
+        <h2 class="feature-header">
+          ${card.title}
+        </h2>
+
+        <p class="feature-desc">
+          ${card.excerpt}
+        </p>
+      </div>
+
+      <div class="feature-meta-container">
+
+        <div class="feat-author">
+          <div class="meta-initials">
+            ${card.authorInitials}
+          </div>
+
+          <span class="meta-author-name">
+            ${card.authorName}
+          </span>
+        </div>
+
+        <span class="meta-read-time">
+          ${card.readTime}
+        </span>
+
+        <span class="meta-date">
+          ${card.date}
+        </span>
+
+      </div>
+
+    </div>
+  `;
+}
+
+renderArticleCard(productCards[0]);
+
+function updateArticleCount(cards) {
+  articleCount.textContent = cards.length;
+}
+
+// ARTICLE GRID
+function renderGrid(cardsData = productCards) {
+  articleGrid.innerHTML = "";
+
+  updateArticleCount(cardsData);
+
+  cardsData.forEach((card) => {
+    const cards = document.createElement("div");
+    cards.classList.add("article-grid-card");
+
+    cards.innerHTML = `
+      <div class="article-grid-head" style="background-color:${card.tagColors.bg}">
+        <div class="article-grid-icon">${card.emoji}</div>
+        <span class="article-grid-tag">${card.tag}</span>
+      </div>
+
+      <div class="article-grid-body">
+        <h2 class="article-grid-title">${card.title}</h2>
+        <p class="article-grid-desc">${card.excerpt}</p>
+      </div>
+
+      <div class="article-grid-meta">
+        <div class="article-grid-author">
+          <div class="meta-initials">${card.authorInitials}</div>
+          <span class="meta-author-name">${card.authorName}</span>
+        </div>
+
+        <span class="meta-read-time">
+          ${card.readTime} • ${card.date}
+        </span>
+      </div>
+    `;
+
+    cards.addEventListener("click", () => {
+      renderArticleCard(card);
+
+      mainArticleCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    articleGrid.appendChild(cards);
+  });
+}
+renderGrid();
