@@ -45,7 +45,10 @@ categories.forEach((cat) => {
   }
 
   button.addEventListener("click", () => {
-    renderFeatureCard();
+    const filtered = productCards.filter(
+      (p) => cat === "All Topics" || p.tag === cat,
+    );
+    renderFeatureCard(filtered[0]);
   });
 
   categoryContainer.appendChild(button);
