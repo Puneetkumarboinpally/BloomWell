@@ -1,3 +1,4 @@
+/* PRIMARY BUTTON */
 .primary-btn {
   padding: 8px 20px;
   background: var(--green-700);
@@ -7,8 +8,12 @@
   font-size: clamp(0.6rem, 4vw, 0.9rem);
   border-radius: var(--radius-lg);
   border: none;
-  transition: var(-t-med);
+  cursor: pointer;
+  transition:
+    background-color var(--t-med),
+    transform var(--t-med);
 }
+
 .primary-btn:hover {
   background: var(--green-900);
   transform: translateY(-2px);
@@ -24,19 +29,28 @@
   font-size: clamp(0.6rem, 4vw, 0.9rem);
   border: 2px solid var(--green-200);
   border-radius: var(--radius-lg);
-  transition: var(-t-med);
+  cursor: pointer;
+  transition:
+    background-color var(--t-med),
+    border-color var(--t-med),
+    transform var(--t-med);
 }
+
 .secondary-btn:hover {
-  border: 2px solid var(--green-500);
+  border-color: var(--green-500);
   background: var(--green-50);
   transform: translateY(-2px);
 }
+
+/* LARGE BUTTON */
 .large-btn {
   padding: 10px 40px;
   font-size: clamp(0.8rem, 4vw, 1rem);
   font-weight: 900;
   border-radius: var(--radius-pill);
 }
+
+/* TAG BUTTON */
 .tag-btn {
   padding: 2px 10px;
   background: var(--green-50);
@@ -48,24 +62,35 @@
   border: 1.5px solid var(--green-300);
   border-radius: var(--radius-lg);
   white-space: nowrap;
-  transition: translate var(--t-med);
+  transition:
+    background-color var(--t-med),
+    transform var(--t-med);
   margin: 4px;
 }
+
 .tag-btn:hover {
   background-color: var(--green-200);
+  transform: translateY(-1px);
 }
 
-/* ABOUT-READERS-ACTION-BUTTON */
+/* READER BUTTON */
 .reader-btn {
   border-radius: var(--radius-sm);
   background-color: var(--green-500);
   color: var(--green-900);
   white-space: nowrap;
-  transition: background-color var(--t-med);
+  cursor: pointer;
+  transition:
+    background-color var(--t-med),
+    transform var(--t-med);
 }
+
 .reader-btn:hover {
   background-color: var(--green-300);
+  transform: translateY(-1px);
 }
+
+/* SUBMIT BUTTON */
 .submit-btn {
   width: 100%;
   background: var(--green-700);
@@ -76,11 +101,53 @@
   border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
-  transition: background-color var(--t-med);
+  transition:
+    background-color var(--t-med),
+    transform var(--t-med);
   font-family: var(--font-sans);
   letter-spacing: 0.02em;
   margin-top: 10px;
 }
+
 .submit-btn:hover {
   background-color: var(--green-900);
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   📱 MOBILE OPTIMISATION
+========================= */
+
+@media (max-width: 768px) {
+  .primary-btn,
+  .secondary-btn,
+  .submit-btn {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 10px 16px;
+  }
+
+  .large-btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .tag-btn {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .primary-btn,
+  .secondary-btn,
+  .submit-btn,
+  .large-btn {
+    font-size: 0.8rem;
+  }
+
+  .tag-btn {
+    font-size: 10px;
+  }
 }

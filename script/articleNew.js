@@ -877,7 +877,6 @@ export const productCards = [
     date: "February 28, 2026",
   },
 ];
-
 // ======================================================
 // DOM ELEMENTS
 // ======================================================
@@ -889,12 +888,17 @@ const articleGrid = document.querySelector(".articles-grid");
 const searchInput = document.querySelector(".article-search-bar");
 const articleCount = document.querySelector(".show-count");
 
+const loadMoreBtn = document.querySelector(".load-more-btn");
+
 // ======================================================
 // STATE
 // ======================================================
 
-// Stores currently selected category
 let currentTopic = "All Topics";
+
+// 👇 NEW: pagination state
+let visibleCount = 8;
+const increment = 4;
 
 // ======================================================
 // CREATE FILTER BUTTONS
@@ -905,7 +909,6 @@ const uniqueTopics = [
   ...new Set(productCards.map((card) => card.tag)),
 ];
 
-// Build buttons only once
 let buttonsHTML = "";
 
 uniqueTopics.forEach((topic) => {
@@ -929,22 +932,16 @@ uniqueTopics.forEach((topic) => {
         ${matchingCard?.emoji || "✦"}
       </span>
 
-      <p class="fil-btn-title">
-        ${topic}
-      </p>
+      <p class="fil-btn-title">${topic}</p>
 
-      <p class="fil-btn-desc">
-        ${count} articles
-      </p>
+      <p class="fil-btn-desc">${count} articles</p>
     </button>
   `;
 });
 
 filterButtons.innerHTML = buttonsHTML;
 
-const firstButton = filterButtons.querySelector(".fil-btn-card");
-
-firstButton?.classList.add("active");
+filterButtons.querySelector(".fil-btn-card")?.classList.add("active");
 
 // ======================================================
 // FEATURED ARTICLE
@@ -954,48 +951,25 @@ function renderArticleCard(card) {
   mainArticleCard.innerHTML = `
     <div class="feature-card">
 
-      <div
-        class="feature-image-section"
-        style="background-color:${card.imgBg};"
-      >
-        <div class="feature-image-inner">
-          ${card.emoji}
-        </div>
-
-        <span class="feature-card-tag">
-          ${card.tag}
-        </span>
+      <div class="feature-image-section" style="background-color:${card.imgBg};">
+        <div class="feature-image-inner">${card.emoji}</div>
+        <span class="feature-card-tag">${card.tag}</span>
       </div>
 
       <div class="feature-body-container">
-        <h2 class="feature-header">
-          ${card.title}
-        </h2>
-
-        <p class="feature-desc">
-          ${card.excerpt}
-        </p>
+        <h2 class="feature-header">${card.title}</h2>
+        <p class="feature-desc">${card.excerpt}</p>
       </div>
 
       <div class="feature-meta-container">
 
         <div class="feat-author">
-          <div class="meta-initials">
-            ${card.authorInitials}
-          </div>
-
-          <span class="meta-author-name">
-            ${card.authorName}
-          </span>
+          <div class="meta-initials">${card.authorInitials}</div>
+          <span class="meta-author-name">${card.authorName}</span>
         </div>
 
-        <span class="meta-read-time">
-          ${card.readTime}
-        </span>
-
-        <span class="meta-date">
-          ${card.date}
-        </span>
+        <span class="meta-read-time">${card.readTime}</span>
+        <span class="meta-date">${card.date}</span>
 
       </div>
 
@@ -1003,64 +977,67 @@ function renderArticleCard(card) {
   `;
 }
 
-// Show first article on page load
 renderArticleCard(productCards[0]);
 
 // ======================================================
-// ARTICLE COUNT
+// HELPERS
 // ======================================================
 
 function updateArticleCount(cards) {
-  articleCount.textContent = `${cards.length} article${cards.length !== 1 ? "s" : ""}`;
+  articleCount.textContent = `${cards.length} article${
+    cards.length !== 1 ? "s" : ""
+  }`;
+}
+
+// 👉 central filter logic (used everywhere)
+function getFilteredCards() {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+
+  let filtered =
+    currentTopic === "All Topics"
+      ? productCards
+      : productCards.filter((card) => card.tag === currentTopic);
+
+  return filtered.filter((card) => {
+    return (
+      card.title.toLowerCase().includes(searchTerm) ||
+      card.excerpt.toLowerCase().includes(searchTerm) ||
+      card.authorName.toLowerCase().includes(searchTerm) ||
+      card.tag.toLowerCase().includes(searchTerm)
+    );
+  });
 }
 
 // ======================================================
-// GRID RENDERING
+// GRID RENDERING (LOAD MORE ENABLED)
 // ======================================================
 
 function renderGrid(cardsData) {
   articleGrid.innerHTML = "";
 
+  const visibleCards = cardsData.slice(0, visibleCount);
+
   updateArticleCount(cardsData);
 
-  cardsData.forEach((card) => {
+  visibleCards.forEach((card) => {
     const cardElement = document.createElement("div");
-
     cardElement.classList.add("article-grid-card");
 
     cardElement.innerHTML = `
-      <div
-        class="article-grid-head"
-        style="background-color:${card.tagColors.bg}"
-      >
-        <div class="article-grid-icon">
-          ${card.emoji}
-        </div>
-
-        <span class="article-grid-tag">
-          ${card.tag}
-        </span>
+      <div class="article-grid-head" style="background-color:${card.tagColors.bg}">
+        <div class="article-grid-icon">${card.emoji}</div>
+        <span class="article-grid-tag">${card.tag}</span>
       </div>
 
       <div class="article-grid-body">
-        <h2 class="article-grid-title">
-          ${card.title}
-        </h2>
-
-        <p class="article-grid-desc">
-          ${card.excerpt}
-        </p>
+        <h2 class="article-grid-title">${card.title}</h2>
+        <p class="article-grid-desc">${card.excerpt}</p>
       </div>
 
       <div class="article-grid-meta">
         <div class="article-grid-author">
-          <div class="meta-initials">
-            ${card.authorInitials}
-          </div>
-
-          <span class="meta-author-name">
-            ${card.authorName}
-          </span>
+          <div class="meta-initials">${card.authorInitials}</div>
+          <span class="meta-author-name">${card.authorName}</span>
         </div>
 
         <span class="meta-read-time">
@@ -1069,68 +1046,42 @@ function renderGrid(cardsData) {
       </div>
     `;
 
-    // When a card is clicked
-    // show it in the featured section
     cardElement.addEventListener("click", () => {
       renderArticleCard(card);
-
-      mainArticleCard.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      mainArticleCard.scrollIntoView({ behavior: "smooth" });
     });
 
     articleGrid.appendChild(cardElement);
   });
+
+  // 👇 show/hide Load More button
+  loadMoreBtn.style.display =
+    visibleCount >= cardsData.length ? "none" : "block";
 }
 
 // ======================================================
-// SEARCH + FILTER LOGIC
+// FILTER ARTICLES
 // ======================================================
 
 function filterArticles() {
-  const searchTerm = searchInput.value.trim().toLowerCase();
-
-  // Step 1:
-  // Filter by selected category
-  let filteredCards =
-    currentTopic === "All Topics"
-      ? productCards
-      : productCards.filter((card) => card.tag === currentTopic);
-
-  // Step 2:
-  // Filter by search text
-  filteredCards = filteredCards.filter((card) => {
-    return (
-      card.title.toLowerCase().includes(searchTerm) ||
-      card.excerpt.toLowerCase().includes(searchTerm) ||
-      card.authorName.toLowerCase().includes(searchTerm) ||
-      card.tag.toLowerCase().includes(searchTerm)
-    );
-  });
-
-  // Step 3:
-  // Render matching results
-  renderGrid(filteredCards);
+  visibleCount = 8; // reset pagination on filter/search
+  renderGrid(getFilteredCards());
 }
 
 // ======================================================
 // CATEGORY BUTTON EVENTS
 // ======================================================
+
 filterButtons.addEventListener("click", (e) => {
   const btn = e.target.closest(".fil-btn-card");
-
   if (!btn) return;
 
-  // Remove active state from all buttons
-  document.querySelectorAll(".fil-btn-card").forEach((button) => {
-    button.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".fil-btn-card")
+    .forEach((b) => b.classList.remove("active"));
 
-  // Add active state to clicked button
   btn.classList.add("active");
 
-  // Save selected category
   currentTopic = btn.dataset.topic;
 
   articleCount.scrollIntoView({
@@ -1138,12 +1089,11 @@ filterButtons.addEventListener("click", (e) => {
     block: "start",
   });
 
-  // Re-render results
   filterArticles();
 });
 
 // ======================================================
-// SEARCH INPUT EVENT
+// SEARCH EVENT
 // ======================================================
 
 searchInput.addEventListener("input", () => {
@@ -1151,7 +1101,16 @@ searchInput.addEventListener("input", () => {
 });
 
 // ======================================================
-// INITIAL PAGE LOAD
+// LOAD MORE EVENT
+// ======================================================
+
+loadMoreBtn.addEventListener("click", () => {
+  visibleCount += increment;
+  renderGrid(getFilteredCards());
+});
+
+// ======================================================
+// INITIAL LOAD
 // ======================================================
 
 renderGrid(productCards);

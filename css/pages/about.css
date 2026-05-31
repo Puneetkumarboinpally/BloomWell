@@ -1,6 +1,7 @@
 .about-hero-section {
   background-color: var(--green-900);
   min-height: 80vh;
+  padding: 2rem 0;
 }
 .hero-container {
   min-height: 70vh;
@@ -53,14 +54,19 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+  justify-content: center;
+  margin: 0 auto;
 }
 .status-card {
   border-right: 1px solid rgba(255, 255, 255, 0.12);
   padding: 0 1rem;
 }
+.status-card:nth-child(4) {
+  border-right: none;
+}
 .status-card h2 {
   color: var(--white);
-  font-size: 28px;
+  font-size: 1.75rem;
   font-family: monospace;
   font-weight: 900;
   text-align: center;
@@ -112,7 +118,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 32px;
+  margin-top: 2rem;
 }
 .mission-card {
   background: var(--white);
@@ -170,7 +176,7 @@
 }
 .teams-card {
   background: var(--white);
-  padding: 24px;
+  padding: 1.5rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   text-align: center;
@@ -282,4 +288,46 @@
 }
 .reader-email:focus {
   border-color: var(--green-500);
+}
+
+@media (max-width: 1028px) {
+  .status-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .status-card h2 {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 786px) {
+  .status-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .status-card h2 {
+    font-size: 1.25rem;
+  }
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .teams-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .editorial-grid {
+    grid-template-columns: 1fr;
+  }
+  .teams-card {
+    padding: 1.25rem;
+  }
+  .readers-action {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-grid {
+    grid-template-columns: repeat(2, 180px);
+  }
+  .status-card:nth-child(4) {
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+  }
 }
