@@ -3,6 +3,7 @@
   background-color: var(--green-900);
   display: flex;
   align-items: center;
+  padding:2rem 0;
 }
 
 .articles-hero-container {

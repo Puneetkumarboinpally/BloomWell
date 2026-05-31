@@ -87,11 +87,6 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
-
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 @media (max-width: 480px) {
